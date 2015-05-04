@@ -6,15 +6,15 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        "mako",
-        "click",
+        "mako >= 1.0",
+        "click >= 3.0",
         "sqlalchemy"
     ],
     entry_points={
         'console_scripts': ['fixturegen-sqlalchemy = fixturegen.cli:sqlalchemy'],
     },
     url='https://github.com/anton44eg/fixturegen',
-    download_url='https://github.com/anton44eg/fixturegen/tarball/0.1',
+    download_url='https://github.com/anton44eg/fixturegen/archive/0.1',
     license='MIT',
     author='Anton Simernia',
     author_email='anton.simernya@gmail.com',
