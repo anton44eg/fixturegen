@@ -1,8 +1,10 @@
 from setuptools import setup, find_packages
 
+VERSION = '0.3'
+
 setup(
     name='fixturegen',
-    version='0.1',
+    version=VERSION,
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
@@ -14,7 +16,7 @@ setup(
         'console_scripts': ['fixturegen-sqlalchemy = fixturegen.cli:sqlalchemy'],
     },
     url='https://github.com/anton44eg/fixturegen',
-    download_url='https://github.com/anton44eg/fixturegen/archive/0.1',
+    download_url='https://github.com/anton44eg/fixturegen/archive/{}'.format(VERSION),
     license='MIT',
     author='Anton Simernia',
     author_email='anton.simernya@gmail.com',
