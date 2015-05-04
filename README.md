@@ -21,7 +21,7 @@ easy_install fixturegen
 Basic
 
 ```sh
-$ fixturegen --table=user --dsn=mysql://user:password@localhost/your_db
+$ fixturegen mysql://user:password@localhost/your_db user
 from fixture import DataSet
 
 class UserData(DataSet):
@@ -39,7 +39,7 @@ class UserData(DataSet):
 Limiting
 
 ```sh
-$ fixturegen --table=user --dsn=mysql://user:password@localhost/your_db --limit=2
+$ fixturegen mysql://user:password@localhost/your_db user --limit=2 
 from fixture import DataSet
 
 class UserData(DataSet):
@@ -54,7 +54,7 @@ class UserData(DataSet):
 Ordering
 
 ```sh
-$ fixturegen --table=user --dsn=mysql://user:password@localhost/your_db --order-by='id DESC'
+$ fixturegen mysql://user:password@localhost/your_db user --order-by='id DESC'
 from fixture import DataSet
 
 class UserData(DataSet):
@@ -72,7 +72,7 @@ class UserData(DataSet):
 Filtering
 
 ```sh
-$ fixturegen --table=user --dsn=mysql://user:password@localhost/your_db --where='id > 1'
+$ fixturegen mysql://user:password@localhost/your_db user --where='id > 1'
 from fixture import DataSet
 
 class UserData(DataSet):
