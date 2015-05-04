@@ -14,9 +14,11 @@ setup(
         'console_scripts': ['fixturegen-sqlalchemy = fixturegen.cli:sqlalchemy'],
     },
     url='https://github.com/anton44eg/fixturegen',
+    download_url='https://github.com/anton44eg/fixturegen/tarball/0.1',
     license='MIT',
     author='Anton Simernia',
     author_email='anton.simernya@gmail.com',
+    keywords=['fixture', 'sqlalchemy', 'testing'],
     description='Fixture generator for fixture module',
     package_data={
         'fixturegen': ['templates/*.mako'],
