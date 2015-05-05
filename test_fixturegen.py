@@ -93,9 +93,15 @@ class FixturegenTestCase(unittest.TestCase):
         self.assertEquals(data[2][1], (2, 'second'))
 
     def test_generator(self):
-        result = fixturegen.generator.generate('user', ('id', 'name'), ((1, u'first'), (2, u'second'), (3, u'third')))
+        data = 'user', ('id', 'name'), ((1, u'first'), (2, u'second'), (3, u'third'))
+        result = fixturegen.generator.generate(*data)
         self.assertIn('from fixture import DataSet', result)
         self.assertIn('class UserData', result)
         self.assertIn('class user_0:', result)
         self.assertIn('id = 1', result)
         self.assertIn("name = u'first'", result)
+
+        # Test without import
+        result = fixturegen.generator.generate(*data, with_import=False)
+        self.assertNotIn('from fixture import DataSet', result)
+

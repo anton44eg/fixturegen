@@ -28,7 +28,7 @@ def sqlalchemy_data(table, dsn, limit=None, where=None, order_by=None):
     return table, tuple(columns), tuple(rows)
 
 
-def generate(table, columns, rows):
+def generate(table, columns, rows, with_import=True):
     filename = resource_filename(Requirement.parse('fixturegen'), 'fixturegen/templates/fixture.mako')
     template = Template(filename=filename)
-    return template.render(table=table, columns=columns, rows=rows)
+    return template.render(table=table, columns=columns, rows=rows, with_import=with_import)
