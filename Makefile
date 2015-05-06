@@ -10,5 +10,8 @@ rst:
 clean:
 	$(SETUP) clean
 
-release: test rst
+flake8:
+	$(SETUP) flake8
+
+release: flake8 test rst
 	 $(SETUP) sdist upload -r pypi -sign --i $(IDENTITY)

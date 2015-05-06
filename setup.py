@@ -13,10 +13,12 @@ setup(
         "sqlalchemy"
     ],
     entry_points={
-        'console_scripts': ['fixturegen-sqlalchemy = fixturegen.cli:sqlalchemy'],
+        'console_scripts':
+            ['fixturegen-sqlalchemy = fixturegen.cli:sqlalchemy'],
     },
     url='https://github.com/anton44eg/fixturegen',
-    download_url='https://github.com/anton44eg/fixturegen/archive/{}.tar.gz'.format(VERSION),
+    download_url='https://github.com/anton44eg/fixturegen/archive/{}.tar.gz'
+        .format(VERSION),
     license='MIT',
     author='Anton Simernia',
     author_email='anton.simernya@gmail.com',
@@ -34,4 +36,7 @@ setup(
         'Topic :: Database',
     ],
     test_suite='test_fixturegen',
+    setup_requires=[
+        "flake8"
+    ]
 )

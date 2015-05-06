@@ -5,6 +5,8 @@ from sqlalchemy import MetaData, select, create_engine, text
 from sqlalchemy.exc import ArgumentError
 from fixturegen.exc import NoSuchTable, WrongDSN
 
+_FIXTURE_TEMPLATE = 'fixturegen/templates/fixture.mako'
+
 
 def sqlalchemy_data(table, dsn, limit=None, where=None, order_by=None):
     try:
@@ -29,6 +31,8 @@ def sqlalchemy_data(table, dsn, limit=None, where=None, order_by=None):
 
 
 def generate(table, columns, rows, with_import=True):
-    filename = resource_filename(Requirement.parse('fixturegen'), 'fixturegen/templates/fixture.mako')
+    filename = resource_filename(Requirement.parse('fixturegen'),
+                                 _FIXTURE_TEMPLATE)
     template = Template(filename=filename)
-    return template.render(table=table, columns=columns, rows=rows, with_import=with_import)
+    return template.render(table=table, columns=columns,
+                           rows=rows, with_import=with_import)
