@@ -1,6 +1,10 @@
+import os
 from setuptools import setup, find_packages
 
 VERSION = '0.5'
+
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+README = open(os.path.join(BASEDIR, 'README.rst')).read()
 
 setup(
     name='fixturegen',
@@ -10,7 +14,7 @@ setup(
     install_requires=[
         "mako >= 1.0",
         "click >= 3.0",
-        "sqlalchemy"
+        "sqlalchemy >= 0.6"
     ],
     entry_points={
         'console_scripts':
@@ -24,6 +28,7 @@ setup(
     author_email='anton.simernya@gmail.com',
     keywords=['fixture', 'sqlalchemy', 'testing'],
     description='Fixture generator for fixture module',
+    long_description=README,
     package_data={
         'fixturegen': ['templates/*.mako'],
     },
@@ -37,6 +42,6 @@ setup(
     ],
     test_suite='test_fixturegen',
     setup_requires=[
-        "flake8"
+        "flake8",
     ]
 )
