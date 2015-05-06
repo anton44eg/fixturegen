@@ -30,9 +30,14 @@ def sqlalchemy_data(table, dsn, limit=None, where=None, order_by=None):
     return table, tuple(columns), tuple(rows)
 
 
-def generate(table, columns, rows, with_import=True):
+def generate(table, columns, rows, with_import=True, fixture_class_name=None):
+    if not fixture_class_name:
+        camel_case_table = table.replace('_', ' ').title().replace(' ', '')
+        fixture_class_name = camel_case_table + 'Data'
+
     filename = resource_filename(Requirement.parse('fixturegen'),
                                  _FIXTURE_TEMPLATE)
     template = Template(filename=filename)
     return template.render(table=table, columns=columns,
-                           rows=rows, with_import=with_import)
+                           rows=rows, with_import=with_import,
+                           fixture_class_name=fixture_class_name)

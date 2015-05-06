@@ -2,7 +2,7 @@
 from fixture import DataSet
 
 % endif
-class ${table.replace('_', ' ').title().replace(' ', '')}Data(DataSet):
+class ${fixture_class_name}(DataSet):
     % for row in rows:
     class ${table}_${loop.index}:
         % for column in columns:
