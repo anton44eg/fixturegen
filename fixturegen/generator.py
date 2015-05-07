@@ -30,7 +30,7 @@ def sqlalchemy_data(table, dsn, limit=None, where=None, order_by=None):
     return table, tuple(columns), tuple(rows)
 
 
-def generate(table, columns, rows, with_import=True, fixture_class_name=None):
+def generate(table, columns, rows, with_import=True, fixture_class_name=None, row_naming_func=None):
     if not fixture_class_name:
         camel_case_table = table.replace('_', ' ').title().replace(' ', '')
         fixture_class_name = camel_case_table + 'Data'

@@ -94,6 +94,16 @@ Hide import statement
             id = 1
             name = u'first'
 
+Custom fixture class name:
+
+.. code:: sh
+
+    $ fixturegen-sqlalchemy mysql://user:password@localhost/your_db user --fixture-class-name DummyData --limit=1
+    class Dummy(DataSet):
+        class user_0:
+            id = 1
+            name = u'first'
+
 Help
 
 .. code:: sh
