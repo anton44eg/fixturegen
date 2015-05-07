@@ -98,9 +98,31 @@ class FixturegenTestCase(unittest.TestCase):
         result = fixturegen.generator.generate(*data)
         self.assertIn('from fixture import DataSet', result)
         self.assertIn('class UserData', result)
-        self.assertIn('class user_0:', result)
+        self.assertIn('class user_1:', result)
         self.assertIn('id = 1', result)
         self.assertIn("name = u'first'", result)
+
+        # Test default row class naming
+        result = fixturegen.generator.generate('user', ('id', 'name'), ((1, u'first'),))
+        self.assertIn('class user_1:', result)
+
+        # Test id row class naming
+        result = fixturegen.generator.generate('user', ('id', 'name'), ((1, u'first'),), row_naming_columns=['id'])
+        self.assertIn('class user_1:', result)
+
+        # Test empty row class naming
+        result = fixturegen.generator.generate('user', ('id', 'name'), ((1, u'first'),), row_naming_columns=[])
+        self.assertIn('class user_1:', result)
+
+        # Test wrong row class naming
+        with self.assertRaises(fixturegen.exc.WrongNamingColumn):
+            fixturegen.generator.generate('user', ('id', 'name'), ((1, u'first'),),
+                                          row_naming_columns=['non_existent_column'])
+
+        # Test multiple columns
+        result = fixturegen.generator.generate('user', ('id', 'name'), ((1, u'first'),),
+                                               row_naming_columns=['id', 'name'])
+        self.assertIn('class user_1_first:', result)
 
         # Test without import
         result = fixturegen.generator.generate(*data, with_import=False)
