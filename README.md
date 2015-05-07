@@ -76,7 +76,7 @@ $ fixturegen-sqlalchemy mysql://user:password@localhost/your_db user --where='id
 from fixture import DataSet
 
 class UserData(DataSet):
-    class user_1:
+    class user_2:
         id = 2
         name = u'second'
 ```
