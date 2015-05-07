@@ -4,3 +4,7 @@ class NoSuchTable(Exception):
 
 class WrongDSN(Exception):
     pass
+
+
+class WrongNamingColumn(Exception):
+    pass

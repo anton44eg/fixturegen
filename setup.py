@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-VERSION = '0.5'
+VERSION = '0.6'
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(BASEDIR, 'README.rst')).read()

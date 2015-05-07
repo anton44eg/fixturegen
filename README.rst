@@ -29,13 +29,13 @@ Basic
     from fixture import DataSet
 
     class UserData(DataSet):
-        class user_0:
+        class user_1:
             id = 1
             name = u'first'
-        class user_1:
+        class user_2:
             id = 2
             name = u'second'
-        class user_2:
+        class user_3:
             id = 3
             name = u'third'
 
@@ -47,10 +47,10 @@ Limiting
     from fixture import DataSet
 
     class UserData(DataSet):
-        class user_0:
+        class user_1:
             id = 1
             name = u'first'
-        class user_1:
+        class user_2:
             id = 2
             name = u'second'
 
@@ -62,13 +62,13 @@ Ordering
     from fixture import DataSet
 
     class UserData(DataSet):
-        class user_0:
+        class user_3:
             id = 3
             name = u'third'
-        class user_1:
+        class user_2:
             id = 2
             name = u'second'
-        class user_2:
+        class user_1:
             id = 1
             name = u'first'
 
@@ -80,7 +80,7 @@ Filtering
     from fixture import DataSet
 
     class UserData(DataSet):
-        class user_0:
+        class user_1:
             id = 2
             name = u'second'
 
@@ -90,7 +90,7 @@ Hide import statement
 
     $ fixturegen-sqlalchemy mysql://user:password@localhost/your_db user --limit=1 --without-import
     class UserData(DataSet):
-        class user_0:
+        class user_1:
             id = 1
             name = u'first'
 
@@ -100,7 +100,17 @@ Custom fixture class name:
 
     $ fixturegen-sqlalchemy mysql://user:password@localhost/your_db user --fixture-class-name DummyData --limit=1
     class Dummy(DataSet):
-        class user_0:
+        class user_1:
+            id = 1
+            name = u'first'
+
+Custom row class naming:
+
+.. code:: sh
+
+    $ fixturegen-sqlalchemy mysql://user:password@localhost/your_db user --naming-row-columns=id,name --limit=1
+    class Dummy(DataSet):
+        class user_1_first:
             id = 1
             name = u'first'
 
