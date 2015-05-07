@@ -1,3 +1,5 @@
+import sys
+
 import click
 
 from fixturegen.exc import NoSuchTable, WrongDSN
@@ -37,5 +39,7 @@ def sqlalchemy(dsn, table, limit=None, where=None,
         )
     except NoSuchTable:
         click.echo('No such table', err=True)
+        sys.exit(1)
     except WrongDSN:
         click.echo('Wrong DSN', err=True)
+        sys.exit(1)
