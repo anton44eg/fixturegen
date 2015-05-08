@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from pkg_resources import Requirement, resource_filename
 from functools import partial
 
@@ -15,7 +16,8 @@ def sqlalchemy_data(table, dsn, limit=None, where=None, order_by=None):
         engine = create_engine(dsn)
     except ArgumentError:
         raise WrongDSN
-    metadata = MetaData(bind=engine, reflect=True)
+    metadata = MetaData()
+    metadata.reflect(bind=engine)
     try:
         mapped_table = metadata.tables[table]
     except KeyError:
@@ -33,7 +35,7 @@ def sqlalchemy_data(table, dsn, limit=None, where=None, order_by=None):
 
 
 def get_row_class_name(row, table_name, naming_column_ids):
-    return '{}_{}'.format(table_name, '_'.join((str(row[i]).replace('-', '_')
+    return '{0}_{1}'.format(table_name, '_'.join((str(row[i]).replace('-', '_')
                                                 for i in naming_column_ids)))
 
 
