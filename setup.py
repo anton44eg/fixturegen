@@ -2,7 +2,7 @@ from __future__ import absolute_import
 import os
 from setuptools import setup, find_packages
 
-VERSION = '0.6'
+VERSION = '0.7'
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(BASEDIR, 'README.rst')).read()
