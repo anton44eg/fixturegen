@@ -1,6 +1,8 @@
 Fixture Generator for `Fixture <https://github.com/fixture-py/fixture>`__
 =========================================================================
 
+|Coverage Status|
+
 Supports only SQLAlchemy
 
 Install
@@ -119,3 +121,6 @@ Help
 .. code:: sh
 
     $ fixturegen-sqlalchemy --help
+
+.. |Coverage Status| image:: https://coveralls.io/repos/anton44eg/fixturegen/badge.svg
+   :target: https://coveralls.io/r/anton44eg/fixturegen
