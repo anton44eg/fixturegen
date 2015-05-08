@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import os
 from setuptools import setup, find_packages
 
@@ -21,7 +22,7 @@ setup(
             ['fixturegen-sqlalchemy = fixturegen.cli:sqlalchemy'],
     },
     url='https://github.com/anton44eg/fixturegen',
-    download_url='https://github.com/anton44eg/fixturegen/archive/{}.tar.gz'
+    download_url='https://github.com/anton44eg/fixturegen/archive/{0}.tar.gz'
         .format(VERSION),
     license='MIT',
     author='Anton Simernia',
@@ -43,5 +44,7 @@ setup(
     test_suite='test_fixturegen',
     setup_requires=[
         "flake8",
+        "nose>=1.0",
+        "coverage"
     ]
 )

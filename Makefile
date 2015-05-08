@@ -2,7 +2,7 @@ SETUP=python setup.py
 IDENTITY='Anton Simernia'
 
 test:
-	$(SETUP) test
+	$(SETUP) nosetests
 
 rst:
 	pandoc README.md -t rst -o README.rst
