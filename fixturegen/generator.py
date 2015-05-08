@@ -36,7 +36,7 @@ def sqlalchemy_data(table, dsn, limit=None, where=None, order_by=None):
 
 def get_row_class_name(row, table_name, naming_column_ids):
     return '{0}_{1}'.format(table_name, '_'.join((str(row[i]).replace('-', '_')
-                                                for i in naming_column_ids)))
+                                                  for i in naming_column_ids)))
 
 
 def generate(table, columns, rows, with_import=True,
