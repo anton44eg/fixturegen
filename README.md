@@ -1,5 +1,5 @@
 # Fixture Generator for [Fixture](https://github.com/fixture-py/fixture)
-[![Coverage Status](https://coveralls.io/repos/anton44eg/fixturegen/badge.svg)](https://coveralls.io/r/anton44eg/fixturegen)
+[![Build Status](https://travis-ci.org/anton44eg/fixturegen.svg?branch=master)](https://travis-ci.org/anton44eg/fixturegen)[![Coverage Status](https://coveralls.io/repos/anton44eg/fixturegen/badge.svg)](https://coveralls.io/r/anton44eg/fixturegen)
 
 Supports only SQLAlchemy
 

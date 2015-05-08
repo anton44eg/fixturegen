@@ -1,7 +1,7 @@
 Fixture Generator for `Fixture <https://github.com/fixture-py/fixture>`__
 =========================================================================
 
-|Coverage Status|
+|Build Status|\ |Coverage Status|
 
 Supports only SQLAlchemy
 
@@ -122,5 +122,7 @@ Help
 
     $ fixturegen-sqlalchemy --help
 
+.. |Build Status| image:: https://travis-ci.org/anton44eg/fixturegen.svg?branch=master
+   :target: https://travis-ci.org/anton44eg/fixturegen
 .. |Coverage Status| image:: https://coveralls.io/repos/anton44eg/fixturegen/badge.svg
    :target: https://coveralls.io/r/anton44eg/fixturegen
