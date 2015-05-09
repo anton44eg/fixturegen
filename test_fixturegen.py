@@ -23,19 +23,20 @@ PY26 = sys.version_info[0] == 2 and sys.version_info[1] == 6
 
 class FixturegenTestCase(unittest.TestCase):
     def setUp(self):
+        connection = sqlite3.connect(_TEST_DB)
         try:
-            connection = sqlite3.connect(_TEST_DB)
             connection.execute('CREATE TABLE empty_table (id PRIMARY KEY , name TEXT)')
             connection.execute('CREATE TABLE user (id PRIMARY KEY , name TEXT)')
             connection.execute('CREATE TABLE user_without_id (name TEXT)')
+            connection.execute('CREATE TABLE user_with_spaced_name (id PRIMARY KEY , name TEXT)')
             data = (
                 (1, 'first'),
                 (2, 'second'),
                 (3, 'third'),
             )
             cursor = connection.cursor()
-            for row in data:
-                cursor.execute('INSERT INTO user VALUES (?, ?)', row)
+            cursor.executemany('INSERT INTO user VALUES (?, ?)', data)
+            cursor.execute('INSERT INTO user_with_spaced_name VALUES (?, ?)', (1, 'first name'))
             connection.commit()
         except:
             try:
@@ -188,4 +189,10 @@ class FixturegenTestCase(unittest.TestCase):
 
         result = runner.invoke(fixturegen.cli.sqlalchemy, ['wrong_dsn', 'user'])
         self.assertTrue('Wrong DSN' in result.output)
+        self.assertEqual(result.exit_code, 1)
+
+        result = runner.invoke(fixturegen.cli.sqlalchemy, [_SQLITE_DSN, 'user_with_spaced_name',
+                                                           '--naming-row-columns=id,name'])
+        self.assertTrue('NonValidRowClassName:' in result.output)
+        self.assertTrue('user_with_spaced_name_1_first name' in result.output)
         self.assertEqual(result.exit_code, 1)

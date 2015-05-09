@@ -3,7 +3,7 @@ import sys
 
 import click
 
-from fixturegen.exc import NoSuchTable, WrongDSN
+from fixturegen.exc import NoSuchTable, WrongDSN, NonValidRowClassName
 from fixturegen.generator import generate, sqlalchemy_data
 
 
@@ -43,4 +43,7 @@ def sqlalchemy(dsn, table, limit=None, where=None,
         sys.exit(1)
     except WrongDSN:
         click.echo('Wrong DSN', err=True)
+        sys.exit(1)
+    except NonValidRowClassName as e:
+        click.echo(e, err=True)
         sys.exit(1)

@@ -1,14 +1,22 @@
 from __future__ import absolute_import
-from pkg_resources import Requirement, resource_filename
 from functools import partial
+from pkg_resources import Requirement, resource_filename
+import re
 
 from mako.template import Template
 from sqlalchemy import MetaData, select, create_engine, text
 from sqlalchemy.exc import ArgumentError
 
-from fixturegen.exc import NoSuchTable, WrongDSN, WrongNamingColumn
+from fixturegen.exc import (
+    NoSuchTable,
+    WrongDSN,
+    WrongNamingColumn,
+    NonValidRowClassName
+)
 
 _FIXTURE_TEMPLATE = 'fixturegen/templates/fixture.mako'
+
+valid_class_name_re = re.compile(r'^[a-zA-Z_][a-zA-Z0-9_]*$')
 
 
 def sqlalchemy_data(table, dsn, limit=None, where=None, order_by=None):
@@ -35,8 +43,12 @@ def sqlalchemy_data(table, dsn, limit=None, where=None, order_by=None):
 
 
 def get_row_class_name(row, table_name, naming_column_ids):
-    return '{0}_{1}'.format(table_name, '_'.join((str(row[i]).replace('-', '_')
-                                                  for i in naming_column_ids)))
+    class_name = '{0}_{1}'.format(table_name, '_'
+                                  .join((str(row[i]).replace('-', '_')
+                                        for i in naming_column_ids)))
+    if valid_class_name_re.match(class_name):
+        return class_name
+    raise NonValidRowClassName(class_name)
 
 
 def generate(table, columns, rows, with_import=True,
